@@ -1,9 +1,7 @@
+import { MainLayout } from './containers'
+
 function App() {
-  return (
-    <>
-      <p>TV app</p>
-    </>
-  )
+  return <MainLayout />
 }
 
 export default App

@@ -1,0 +1,20 @@
+.custom-button {
+  cursor: pointer;
+
+  &--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &__text {
+    text-align: left;
+
+    &--wrap {
+      @include text-wrap;
+    }
+
+    &--ellipsis {
+      @include text-ellipsis;
+    }
+  }
+}

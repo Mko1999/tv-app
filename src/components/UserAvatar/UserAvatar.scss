@@ -1,0 +1,14 @@
+.user-avatar {
+  @include flex_align;
+  gap: 20px;
+
+  &__image {
+    border-radius: 50%;
+  }
+
+  &__name {
+    @include text-wrap;
+    color: $color_white;
+    font-size: 32px;
+  }
+}

@@ -1,0 +1,39 @@
+.nav-button {
+  width: 82px;
+  height: 82px;
+  @include flex_center;
+
+  gap: 50px;
+  font-size: 36px;
+  color: $color_white;
+  border-radius: 12px;
+
+  &--expanded {
+    width: -webkit-fill-available;
+    height: unset;
+    min-height: 72px;
+    padding: 15px 24px;
+    justify-content: flex-start;
+
+    &--active,
+    &.is-active {
+      background-color: $color_blueOpacity56 !important;
+      border-radius: 12px !important;
+    }
+  }
+
+  &:not(.nav-button--active):not(.is-active):not(.nav-button--expanded--active):hover {
+    background: $color_blackOpacity10;
+  }
+
+  &--active,
+  &.is-active {
+    background-color: $color_blue;
+    border-radius: 50%;
+  }
+
+  &__text {
+    color: $color_white;
+    font-size: 36px;
+  }
+}
