@@ -1,15 +1,20 @@
 :root {
-  --color_white: #f1f1f1;
-  --color_black: #040404;
-  --color_blackOpacity10: #0404041a;
+  --color-white: #f1f1f1;
+  --color-whiteOpacity10: #f1f1f11a;
+
+  --color-black: #040404;
+  --color-blackOpacity10: #0404041a;
+
   --color-gray: #858688;
   --color-blue: #3b486d;
   --color-blueOpacity56: #3b486d8f;
 }
 
-$color_white: var(--color_white);
-$color_black: var(--color_black);
-$color_blackOpacity10: var(--color_blackOpacity10);
+$color_white: var(--color-white);
+$color_whiteOpacity10: var(--color-whiteOpacity10);
+
+$color_black: var(--color-black);
+$color_blackOpacity10: var(--color-blackOpacity10);
 $color_gray: var(--color-gray);
 $color_blue: var(--color-blue);
 $color_blueOpacity56: var(--color-blueOpacity56);

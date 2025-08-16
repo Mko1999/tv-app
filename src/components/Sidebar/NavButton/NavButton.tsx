@@ -3,8 +3,11 @@ import cx from 'classnames'
 import CustomButton from '../../shared/CustomButton/CustomButton'
 
 import './NavButton.scss'
+import classNamesConstructor from '../../../utils/classNamesUtils'
 
 export type SidebarSection = 'search' | 'home' | 'tv' | 'movies' | 'genres' | 'watch'
+
+const { baseClassname } = classNamesConstructor('nav-button')
 
 const NavButton: FC<{
   section: SidebarSection
@@ -13,21 +16,24 @@ const NavButton: FC<{
   isActive: boolean
   onClick: () => void
   isExpanded: boolean
-}> = ({ label, Icon, isActive, onClick, isExpanded }) => (
-  <CustomButton
-    onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-      e.preventDefault()
-      onClick()
-    }}
-    className={cx('nav-button', {
-      'nav-button--active': isActive,
-      'nav-button--expanded': isExpanded,
-      'nav-button--expanded--active': isExpanded && isActive,
-    })}
-    startAdornment={<Icon alt={label} />}
-  >
-    {isExpanded ? <span className='nav-button__text'>{label}</span> : null}
-  </CustomButton>
-)
+}> = ({ label, Icon, isActive, onClick, isExpanded }) => {
+  return (
+    <CustomButton
+      onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault()
+        onClick()
+      }}
+      className={cx(
+        baseClassname(),
+        baseClassname('--active', isActive),
+        baseClassname('--expanded', isExpanded),
+        baseClassname('--expanded--active', isExpanded && isActive),
+      )}
+      startAdornment={<Icon alt={label} />}
+    >
+      {isExpanded ? <span className={baseClassname('__text')}>{label}</span> : null}
+    </CustomButton>
+  )
+}
 
 export default NavButton

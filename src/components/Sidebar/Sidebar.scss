@@ -35,6 +35,10 @@ $sidebar-expanded: 350px;
     gap: 55px;
   }
 
+  &__user-avatar {
+    padding-right: 17px;
+  }
+
   &__panel {
     @include flex_column;
     justify-content: space-between;
@@ -48,7 +52,12 @@ $sidebar-expanded: 350px;
     background: $color_black;
     transition: width 0.25s ease;
     z-index: 20;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     &--expanded {
       padding-top: 60px;
@@ -59,5 +68,6 @@ $sidebar-expanded: 350px;
   &__nav {
     @include flex_column;
     align-items: center;
+    padding-bottom: 16px;
   }
 }

@@ -15,6 +15,7 @@ import SidebarBottomActions from './SidebarBottomActions/SidebarBottomActions'
 import type { User } from '../../utils/mockCurrentUser'
 import type { SidebarSection } from './NavButton/NavButton'
 import NavButton from './NavButton/NavButton'
+import classNamesConstructor from '../../utils/classNamesUtils'
 
 type NavItem = {
   section: SidebarSection
@@ -37,17 +38,25 @@ export type SidebarProps = {
   onSectionSelect: (section: SidebarSection) => void
 }
 
+const { baseClassname } = classNamesConstructor('sidebar')
+
 export const Sidebar: React.FC<SidebarProps> = ({
   user,
   defaultSection = 'home',
   onSectionSelect,
 }) => {
-  const [isMenuExpanded, setIsMenuExpanded] = useState<boolean>(false)
+  const [isMenuExpanded, setIsMenuExpanded] = useState<boolean>(true)
   const [selectedSection, setSelectedSection] = useState<SidebarSection>(defaultSection)
 
-  const rootClasses = cx('sidebar', { 'sidebar--open': isMenuExpanded })
-  const backdropClasses = cx('sidebar__backdrop', { 'sidebar__backdrop--show': isMenuExpanded })
-  const sidebarPanelClasses = cx('sidebar__panel', { 'sidebar__panel--expanded': isMenuExpanded })
+  const rootClasses = cx(baseClassname(), baseClassname('--open', isMenuExpanded))
+  const backdropClasses = cx(
+    baseClassname('__backdrop'),
+    baseClassname('__backdrop--show', isMenuExpanded),
+  )
+  const sidebarPanelClasses = cx(
+    baseClassname('__panel'),
+    baseClassname('__panel--expanded', isMenuExpanded),
+  )
 
   const handleSelect = (section: SidebarSection) => {
     setSelectedSection(section)
@@ -58,19 +67,23 @@ export const Sidebar: React.FC<SidebarProps> = ({
     <div
       className={rootClasses}
       onMouseEnter={() => setIsMenuExpanded(true)}
-      onMouseLeave={() => setIsMenuExpanded(false)}
+      onMouseLeave={() => setIsMenuExpanded(true)}
       onTouchStart={() => setIsMenuExpanded(true)}
-      onTouchEnd={() => setIsMenuExpanded(true)}
-      // onFocusCapture={() => setIsMenuExpanded(true)}
-      // onBlurCapture={() => setIsMenuExpanded(false)}
+      onTouchEnd={() => setIsMenuExpanded(false)}
     >
       <div className={backdropClasses} aria-hidden />
 
       <aside className={sidebarPanelClasses} aria-expanded={isMenuExpanded}>
-        <div className='sidebar__top-block'>
-          {isMenuExpanded && <UserAvatar name={user?.name ?? ''} image={user?.image ?? ''} />}
+        <div className={baseClassname('__top-block')}>
+          {isMenuExpanded && (
+            <UserAvatar
+              className={baseClassname('__user-avatar')}
+              name={user?.name ?? ''}
+              image={user?.image ?? ''}
+            />
+          )}
 
-          <nav className='sidebar__nav'>
+          <nav className={baseClassname('__nav')}>
             {NAV_ITEMS.map(({ section, label, Icon }) => (
               <NavButton
                 key={section}

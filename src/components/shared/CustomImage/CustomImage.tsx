@@ -18,6 +18,7 @@ const CustomImage: React.FC<CustomImageProps> = ({ src, alt = '', width, height,
     width={width}
     height={height}
     className={cx(className, 'custom-image')}
+    loading='lazy'
   />
 )
 

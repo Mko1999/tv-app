@@ -1,3 +1,4 @@
+import classNamesConstructor from '../../../utils/classNamesUtils'
 import CustomButton from '../../shared/CustomButton/CustomButton'
 import './SidebarBottomActions.scss'
 
@@ -7,11 +8,13 @@ const actions = [
   { label: 'Exit', onClick: () => console.log('Exit clicked') },
 ]
 
+const { baseClassname } = classNamesConstructor('sidebar__bottom')
+
 const SidebarBottomActions = () => {
   return (
-    <div className='sidebar__bottom'>
+    <div className={baseClassname()}>
       {actions.map(({ label, onClick }) => (
-        <CustomButton key={label} className='sidebar__bottom__action' onClick={onClick}>
+        <CustomButton key={label} className={baseClassname('__action')} onClick={onClick}>
           {label}
         </CustomButton>
       ))}

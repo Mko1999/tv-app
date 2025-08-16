@@ -1,18 +1,22 @@
+import cx from 'classnames'
 import type { User } from '../../utils/mockCurrentUser'
 import { CustomImage } from '../shared'
 import './UserAvatar.scss'
+import classNamesConstructor from '../../utils/classNamesUtils'
 
-const UserAvatar = ({ image, name }: User) => {
+const { baseClassname } = classNamesConstructor('user-avatar')
+
+const UserAvatar = ({ image, name, className }: User & { className?: string }) => {
   return (
-    <div className='user-avatar'>
+    <div className={cx(baseClassname(), className)}>
       <CustomImage
         width={82}
         height={82}
         src={image ?? ''}
         alt='User avatar'
-        className='user-avatar__image'
+        className={baseClassname('__image')}
       />
-      {name && <p className='user-avatar__name'>{name}</p>}
+      {name && <p className={baseClassname('__name')}>{name}</p>}
     </div>
   )
 }
