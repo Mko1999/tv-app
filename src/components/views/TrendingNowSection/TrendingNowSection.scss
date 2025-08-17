@@ -1,0 +1,44 @@
+.trending-now-section {
+  --items-per-view: 8;
+  --gap: 12px;
+  @include flex_column;
+  gap: 4px;
+
+  &__title {
+    color: $color_white;
+
+    font-size: 32px;
+    line-height: 32px;
+  }
+
+  &__viewport {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  &__container {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: var(--gap);
+    will-change: transform;
+    user-select: none;
+  }
+
+  &__slide {
+    flex: 0 0 calc((100% - (var(--items-per-view) - 1) * var(--gap)) / var(--items-per-view));
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+
+    display: inline-flex;
+    align-items: stretch;
+    justify-content: stretch;
+  }
+
+  &__cover {
+    width: 200px;
+    height: 278px;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+  }
+}

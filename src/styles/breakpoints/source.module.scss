@@ -1,13 +1,8 @@
 @import './index.scss';
 
 :export {
-  mobile_m: $mobile-m;
-  mobile_l: $mobile-l;
-  tablet_m: $tablet-m;
+  mobile: $mobile;
   tablet: $tablet;
-  tablet_l: $tablet-l;
   desktop: $desktop;
-  wide_s: $wide-s;
-  wide_m: $wide-m;
-  wide_l: $wide-l;
+  wide: $wide;
 }

@@ -1,4 +1,5 @@
 .custom-button {
+  @include flex_align;
   cursor: pointer;
 
   &--disabled {

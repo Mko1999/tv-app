@@ -1,41 +1,21 @@
 @mixin breakpoint($devices) {
-  @if $devices == mobile-m {
-    @media (max-width: $mobile-m) {
-      @content;
-    }
-  } @else if $devices == mobile-l {
-    @media (max-width: $mobile-l) {
-      @content;
-    }
-  } @else if $devices == tablet-m {
-    @media (max-width: $tablet-m) {
+  @if $devices == mobile {
+    @media (max-width: $mobile) {
       @content;
     }
   } @else if $devices == tablet {
     @media (max-width: $tablet) {
       @content;
     }
-  } @else if $devices == tablet-l {
-    @media (max-width: $tablet-l) {
-      @content;
-    }
   } @else if $devices == desktop {
     @media (max-width: $desktop) {
       @content;
     }
-  } @else if $devices == wide-s {
-    @media (max-width: $wide-s) {
-      @content;
-    }
-  } @else if $devices == wide-m {
-    @media (max-width: $wide-m) {
-      @content;
-    }
-  } @else if $devices == wide-l {
-    @media (max-width: $wide-l) {
+  } @else if $devices == wide {
+    @media (max-width: $wide) {
       @content;
     }
   } @else {
-    @error "Unknown breakpoint `#{$devices}`. Allowed: mobile-m, mobile-l, tablet-m, tablet, tablet-l, desktop, desktop-l, wide-s, wide-m, wide-l, large";
+    @error "Unknown breakpoint `#{$devices}`. Allowed: mobile, tablet desktop, wide";
   }
 }

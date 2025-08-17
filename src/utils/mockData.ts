@@ -1,4 +1,4 @@
-type Item = {
+export type VideoItem = {
   Id: string
   Title: string
   CoverImage: string
@@ -13,10 +13,11 @@ type Item = {
 }
 
 type Content = {
-  Featured: Item
-  TendingNow: Item[]
+  Featured: VideoItem
+  TendingNow: VideoItem[]
 }
-const mockData: Content = {
+
+const mockVideosData: Content = {
   Featured: {
     Id: '1',
     Title: 'The Irishman',
@@ -266,3 +267,5 @@ const mockData: Content = {
     },
   ],
 }
+
+export default mockVideosData

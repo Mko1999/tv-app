@@ -45,7 +45,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   defaultSection = 'home',
   onSectionSelect,
 }) => {
-  const [isMenuExpanded, setIsMenuExpanded] = useState<boolean>(true)
+  const [isMenuExpanded, setIsMenuExpanded] = useState<boolean>(false)
   const [selectedSection, setSelectedSection] = useState<SidebarSection>(defaultSection)
 
   const rootClasses = cx(baseClassname(), baseClassname('--open', isMenuExpanded))
@@ -67,7 +67,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     <div
       className={rootClasses}
       onMouseEnter={() => setIsMenuExpanded(true)}
-      onMouseLeave={() => setIsMenuExpanded(true)}
+      onMouseLeave={() => setIsMenuExpanded(false)}
       onTouchStart={() => setIsMenuExpanded(true)}
       onTouchEnd={() => setIsMenuExpanded(false)}
     >
