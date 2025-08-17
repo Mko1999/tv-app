@@ -1,5 +1,5 @@
 .featured-video-details {
-  display: grid;
+  @include flex_column;
   gap: 12px;
 
   &__facts {
@@ -50,21 +50,28 @@
     }
 
     &__item {
+      @include flex_center;
       min-height: 72px;
       border-radius: 40px;
-      @include flex_center;
       font-size: 32px;
       line-height: 32px;
-      padding: 18px 48px;
+      padding: 0px 48px;
+      letter-spacing: -0.32px;
+      text-align: center;
 
       @include breakpoint(desktop) {
         font-size: 28px;
         line-height: 28px;
       }
+
       @include breakpoint(tablet) {
+        min-height: 36px;
+        padding: 0px 20px;
         font-size: 24px;
         line-height: 24px;
+        width: 50%;
       }
+
       @include breakpoint(tablet) {
         font-size: 20px;
         line-height: 20px;
@@ -73,7 +80,7 @@
 
     &__play {
       gap: 8px;
-      color: $color_black;
+      color: $color_black-dark;
       background-color: $color_white;
     }
 

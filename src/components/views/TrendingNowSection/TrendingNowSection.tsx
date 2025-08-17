@@ -6,6 +6,7 @@ import { CustomImage } from '../../shared'
 import CustomButton from '../../shared/CustomButton/CustomButton'
 import { publicImage } from '../../../utils/imageUtils'
 import './TrendingNowSection.scss'
+import { useEmblaScrollToStart } from '../../../hooks'
 
 type Props = {
   items: VideoItem[]
@@ -15,7 +16,7 @@ type Props = {
 const { baseClassname } = classNamesConstructor('trending-now-section')
 
 const TrendingNowSection: React.FC<Props> = ({ items, onPick }) => {
-  const [emblaRef] = useEmblaCarousel(
+  const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       dragFree: true,
       align: 'start',
@@ -26,23 +27,28 @@ const TrendingNowSection: React.FC<Props> = ({ items, onPick }) => {
     [WheelGesturesPlugin()],
   )
 
+  const scrollToStart = useEmblaScrollToStart(emblaApi)
+
   return (
     <section className={baseClassname()}>
       <p className={baseClassname('__title')}>Trending Now</p>
 
       <div className={baseClassname('__viewport')} ref={emblaRef}>
         <div className={baseClassname('__container')}>
-          {items.map((m) => (
+          {items.map((movie) => (
             <CustomButton
-              key={m.Id}
+              key={movie.Id}
               className={baseClassname('__slide')}
-              onClick={() => onPick(m)}
-              aria-label={m.Title}
+              onClick={() => {
+                onPick(movie)
+                scrollToStart()
+              }}
+              aria-label={movie.Title}
             >
               <CustomImage
                 className={baseClassname('__cover')}
-                src={publicImage(m.CoverImage)}
-                alt={m.Title}
+                src={publicImage(movie.CoverImage)}
+                alt={movie.Title}
               />
             </CustomButton>
           ))}

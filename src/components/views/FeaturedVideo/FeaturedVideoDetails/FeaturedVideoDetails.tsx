@@ -6,6 +6,7 @@ import { formatDuration } from '../../../../utils/timeUtilts'
 import CustomButton from '../../../shared/CustomButton/CustomButton'
 
 import './FeaturedVideoDetails.scss'
+import { useIsTablet } from '../../../../hooks'
 
 type FeatureVideoDetailsProps = {
   releaseYear: string
@@ -26,6 +27,8 @@ const FeaturedVideoDetails: React.FC<FeatureVideoDetailsProps> = ({
   onPlay,
   onMoreInfo,
 }) => {
+  const isTablet = useIsTablet()
+
   return (
     <div className={baseClassname()}>
       <div className={baseClassname('__facts')}>
@@ -40,7 +43,7 @@ const FeaturedVideoDetails: React.FC<FeatureVideoDetailsProps> = ({
         <CustomButton
           className={`${baseClassname('__actions__item')} ${baseClassname('__actions__play')}`}
           onClick={onPlay}
-          startAdornment={<PlayIcon width={18} height={24} />}
+          startAdornment={isTablet ? null : <PlayIcon width={18} height={24} />}
         >
           Play
         </CustomButton>
