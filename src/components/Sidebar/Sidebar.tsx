@@ -47,12 +47,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
   defaultSection = 'home',
   onSectionSelect,
 }) => {
-  const [isMenuExpanded, setIsMenuExpanded] = useState<boolean>(false)
+  const [isMenuExpanded, setIsMenuExpanded] = useState<boolean>(true)
   const [selectedSection, setSelectedSection] = useState<SidebarSection>(defaultSection)
 
-  const open = () => setIsMenuExpanded(true)
-  const close = () => setIsMenuExpanded(false)
-  const toggle = () => setIsMenuExpanded((v) => !v)
+  const openExpandedMenu = () => setIsMenuExpanded(true)
+  const closeExpandedMenu = () => setIsMenuExpanded(false)
+  const toggleExpandedMenu = () => setIsMenuExpanded((v) => !v)
 
   const panelRef = useRef<HTMLDivElement | null>(null)
 
@@ -68,13 +68,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
     baseClassname('__panel--expanded', isMenuExpanded),
   )
 
+  const navMenuClasses = cx(baseClassname('__nav'), baseClassname('__nav--show', isMenuExpanded))
+
   const handleSelect = (section: SidebarSection) => {
     setSelectedSection(section)
     onSectionSelect?.(section)
   }
 
   useClickOutside(panelRef, () => {
-    if (isMenuExpanded) close()
+    if (isMenuExpanded) closeExpandedMenu()
   })
 
   return (
@@ -86,13 +88,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
         lastPointerType.current = pt
       }}
       onPointerEnter={(e) => {
-        if (e.pointerType === 'mouse') open()
+        if (e.pointerType === 'mouse') openExpandedMenu()
       }}
       onPointerLeave={(e) => {
-        if (e.pointerType === 'mouse') close()
+        if (e.pointerType === 'mouse') closeExpandedMenu()
       }}
       onClick={() => {
-        if (lastPointerType.current !== 'mouse') toggle()
+        if (lastPointerType.current !== 'mouse') toggleExpandedMenu()
       }}
     >
       <div className={backdropClasses} aria-hidden />
@@ -107,7 +109,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             />
           )}
 
-          <nav className={baseClassname('__nav')}>
+          <nav className={navMenuClasses}>
             {NAV_ITEMS.map(({ section, label, Icon }) => (
               <NavButton
                 key={section}

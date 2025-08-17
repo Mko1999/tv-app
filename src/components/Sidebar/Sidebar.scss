@@ -80,5 +80,9 @@ $sidebar-expanded-tablet: 300px;
     @include flex_column;
     align-items: center;
     padding-bottom: 16px;
+
+    &--show {
+      align-items: stretch;
+    }
   }
 }

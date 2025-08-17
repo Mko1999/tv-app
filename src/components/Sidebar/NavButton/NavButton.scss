@@ -13,6 +13,7 @@
 
   &--expanded {
     width: -webkit-fill-available;
+    width: -moz-available; //for Mozilla
     height: unset;
     min-height: 72px;
     justify-content: flex-start;
