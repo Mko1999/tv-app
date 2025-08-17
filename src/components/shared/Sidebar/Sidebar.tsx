@@ -2,6 +2,9 @@ import { useRef, useState, type FC } from 'react'
 import cx from 'classnames'
 
 import UserAvatar from '../UserAvatar/UserAvatar'
+
+import './Sidebar.scss'
+import type { SidebarSection } from './NavButton/NavButton'
 import {
   GenreIcon,
   HomeIcon,
@@ -9,15 +12,12 @@ import {
   SearchIcon,
   TVShowsIcon,
   WatchLaterIcon,
-} from '../../assets/icons'
-import SidebarBottomActions from './SidebarBottomActions/SidebarBottomActions'
-import type { User } from '../../utils/mockCurrentUser'
-import type { SidebarSection } from './NavButton/NavButton'
+} from '../../../assets/icons'
+import classNamesConstructor from '../../../utils/classNamesUtils'
+import type { User } from '../../../utils/mockCurrentUser'
+import { useClickOutside } from '../../../hooks'
 import NavButton from './NavButton/NavButton'
-import classNamesConstructor from '../../utils/classNamesUtils'
-import { useClickOutside } from '../../hooks'
-
-import './Sidebar.scss'
+import SidebarBottomActions from './SidebarBottomActions/SidebarBottomActions'
 
 type NavItem = {
   section: SidebarSection
@@ -47,7 +47,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   defaultSection = 'home',
   onSectionSelect,
 }) => {
-  const [isMenuExpanded, setIsMenuExpanded] = useState<boolean>(true)
+  const [isMenuExpanded, setIsMenuExpanded] = useState<boolean>(false)
   const [selectedSection, setSelectedSection] = useState<SidebarSection>(defaultSection)
 
   const openExpandedMenu = () => setIsMenuExpanded(true)

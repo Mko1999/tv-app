@@ -1,5 +1,5 @@
-import classNamesConstructor from '../../../utils/classNamesUtils'
-import CustomButton from '../../shared/CustomButton/CustomButton'
+import classNamesConstructor from '../../../../utils/classNamesUtils'
+import CustomButton from '../../CustomButton/CustomButton'
 import './SidebarBottomActions.scss'
 
 const actions = [

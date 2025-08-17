@@ -1,8 +1,8 @@
 import cx from 'classnames'
-import type { User } from '../../utils/mockCurrentUser'
-import { CustomImage } from '../shared'
 import './UserAvatar.scss'
-import classNamesConstructor from '../../utils/classNamesUtils'
+import classNamesConstructor from '../../../utils/classNamesUtils'
+import type { User } from '../../../utils/mockCurrentUser'
+import CustomImage from '../CustomImage/CustomImage'
 
 const { baseClassname } = classNamesConstructor('user-avatar')
 

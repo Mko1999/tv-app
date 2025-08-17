@@ -1,4 +1,4 @@
-import Sidebar from '../../components/Sidebar/Sidebar'
+import { Sidebar } from '../../components/shared'
 import Home from '../../components/views/Home/Home'
 import { mockCurrentUser } from '../../utils/mockCurrentUser'
 

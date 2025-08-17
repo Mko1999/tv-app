@@ -1,9 +1,9 @@
 import type { FC } from 'react'
 import cx from 'classnames'
-import CustomButton from '../../shared/CustomButton/CustomButton'
+import classNamesConstructor from '../../../../utils/classNamesUtils'
+import CustomButton from '../../CustomButton/CustomButton'
 
 import './NavButton.scss'
-import classNamesConstructor from '../../../utils/classNamesUtils'
 
 export type SidebarSection = 'search' | 'home' | 'tv' | 'movies' | 'genres' | 'watch'
 
