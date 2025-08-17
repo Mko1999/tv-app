@@ -1,4 +1,3 @@
-import * as React from 'react'
 import cx from 'classnames'
 
 import type { VideoItem } from '../../../utils/mockData'
@@ -7,10 +6,8 @@ import classNamesConstructor from '../../../utils/classNamesUtils'
 import './FeaturedVideo.scss'
 import { CustomImage } from '../../shared'
 import { publicImage } from '../../../utils/imageUtils'
-import CustomButton from '../../shared/CustomButton/CustomButton'
-import { PlayIcon } from '../../../assets/icons'
-import { formatDuration } from '../../../utils/timeUtilts'
 import { MOCK_VIDEO_URL } from '../../../utils/mockVideoUrl'
+import FeaturedVideoDetails from './FeaturedVideoDetails/FeaturedVideoDetails'
 
 type FeaturedProps = {
   item: VideoItem
@@ -68,30 +65,14 @@ const FeaturedVideo: React.FC<FeaturedProps> = ({ item, showVideo, onPlay, onMor
             <h1 className={baseClassname('__title-text')}>{item?.Title}</h1>
           )}
         </div>
-
-        <div className={baseClassname('__facts')}>
-          <span className={baseClassname('__facts__item')}>{item?.ReleaseYear}</span>
-          <span className={baseClassname('__facts__item')}>{item?.MpaRating}</span>
-          <span className={baseClassname('__facts__item')}>{formatDuration(item.Duration)}</span>
-        </div>
-
-        <p className={baseClassname('__desc')}>{item?.Description}</p>
-
-        <div className={baseClassname('__actions')}>
-          <CustomButton
-            className={cx(baseClassname('__actions__play'), baseClassname('__actions__item'))}
-            onClick={onPlay}
-            startAdornment={<PlayIcon width={18} height={24} />}
-          >
-            Play
-          </CustomButton>
-          <CustomButton
-            className={cx(baseClassname('__actions__more'), baseClassname('__actions__item'))}
-            onClick={onMoreInfo}
-          >
-            More Info
-          </CustomButton>
-        </div>
+        <FeaturedVideoDetails
+          releaseYear={item.ReleaseYear}
+          mpaRating={item.MpaRating}
+          duration={item.Duration}
+          description={item.Description}
+          onPlay={onPlay}
+          onMoreInfo={onMoreInfo}
+        />
       </div>
     </section>
   )

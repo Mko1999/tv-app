@@ -1,0 +1,86 @@
+.featured-video-details {
+  display: grid;
+  gap: 12px;
+
+  &__facts {
+    @include text-ellipsis;
+    display: flex;
+    gap: 12px;
+    font-size: 30px;
+    line-height: 30px;
+    color: $color_white;
+
+    @include breakpoint(desktop) {
+      font-size: 24px;
+      line-height: 24px;
+    }
+    @include breakpoint(tablet) {
+      font-size: 20px;
+      line-height: 20px;
+    }
+  }
+
+  &__desc {
+    font-size: 32px;
+    line-height: 32px;
+    color: $color_white;
+    @include text-ellipsis-multiline(4);
+
+    @include breakpoint(desktop) {
+      font-size: 28px;
+      line-height: 28px;
+    }
+    @include breakpoint(tablet) {
+      font-size: 24px;
+      line-height: 24px;
+    }
+    @include breakpoint(tablet) {
+      font-size: 20px;
+      line-height: 20px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+
+    @include breakpoint(tablet) {
+      flex-direction: column;
+    }
+
+    &__item {
+      min-height: 72px;
+      border-radius: 40px;
+      @include flex_center;
+      font-size: 32px;
+      line-height: 32px;
+      padding: 18px 48px;
+
+      @include breakpoint(desktop) {
+        font-size: 28px;
+        line-height: 28px;
+      }
+      @include breakpoint(tablet) {
+        font-size: 24px;
+        line-height: 24px;
+      }
+      @include breakpoint(tablet) {
+        font-size: 20px;
+        line-height: 20px;
+      }
+    }
+
+    &__play {
+      gap: 8px;
+      color: $color_black;
+      background-color: $color_white;
+    }
+
+    &__more {
+      color: $color_white;
+      background: transparent linear-gradient(128deg, #2727f5 0%, #001671 100%) 0 0 no-repeat
+        padding-box;
+    }
+  }
+}
