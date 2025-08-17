@@ -1,5 +1,5 @@
+import { useRef, useState, type FC } from 'react'
 import cx from 'classnames'
-import './Sidebar.scss'
 
 import UserAvatar from '../UserAvatar/UserAvatar'
 import {
@@ -10,12 +10,14 @@ import {
   TVShowsIcon,
   WatchLaterIcon,
 } from '../../assets/icons'
-import { useState, type FC } from 'react'
 import SidebarBottomActions from './SidebarBottomActions/SidebarBottomActions'
 import type { User } from '../../utils/mockCurrentUser'
 import type { SidebarSection } from './NavButton/NavButton'
 import NavButton from './NavButton/NavButton'
 import classNamesConstructor from '../../utils/classNamesUtils'
+import { useClickOutside } from '../../hooks'
+
+import './Sidebar.scss'
 
 type NavItem = {
   section: SidebarSection
@@ -48,6 +50,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
   const [isMenuExpanded, setIsMenuExpanded] = useState<boolean>(false)
   const [selectedSection, setSelectedSection] = useState<SidebarSection>(defaultSection)
 
+  const open = () => setIsMenuExpanded(true)
+  const close = () => setIsMenuExpanded(false)
+  const toggle = () => setIsMenuExpanded((v) => !v)
+
+  const panelRef = useRef<HTMLDivElement | null>(null)
+
+  const lastPointerType = useRef<'mouse' | 'touch' | 'pen' | 'unknown'>('unknown')
+
   const rootClasses = cx(baseClassname(), baseClassname('--open', isMenuExpanded))
   const backdropClasses = cx(
     baseClassname('__backdrop'),
@@ -63,13 +73,27 @@ export const Sidebar: React.FC<SidebarProps> = ({
     onSectionSelect?.(section)
   }
 
+  useClickOutside(panelRef, () => {
+    if (isMenuExpanded) close()
+  })
+
   return (
     <div
+      ref={panelRef}
       className={rootClasses}
-      onMouseEnter={() => setIsMenuExpanded(true)}
-      onMouseLeave={() => setIsMenuExpanded(false)}
-      onTouchStart={() => setIsMenuExpanded(true)}
-      onTouchEnd={() => setIsMenuExpanded(false)}
+      onPointerDown={(e) => {
+        const pt = (e.pointerType || 'unknown') as typeof lastPointerType.current
+        lastPointerType.current = pt
+      }}
+      onPointerEnter={(e) => {
+        if (e.pointerType === 'mouse') open()
+      }}
+      onPointerLeave={(e) => {
+        if (e.pointerType === 'mouse') close()
+      }}
+      onClick={() => {
+        if (lastPointerType.current !== 'mouse') toggle()
+      }}
     >
       <div className={backdropClasses} aria-hidden />
 

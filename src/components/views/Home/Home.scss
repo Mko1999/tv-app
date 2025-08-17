@@ -1,3 +1,7 @@
 .home {
   margin-left: 150px;
+
+  @include breakpoint(tablet) {
+    margin-left: 100px;
+  }
 }

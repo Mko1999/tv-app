@@ -1,4 +1,6 @@
 $sidebar-collapsed: 150px;
+$sidebar-collapsed-tablet: 100px;
+
 $sidebar-expanded: 350px;
 $sidebar-expanded-tablet: 300px;
 
@@ -6,6 +8,10 @@ $sidebar-expanded-tablet: 300px;
   position: relative;
   z-index: 20;
   --sb-width: #{$sidebar-collapsed};
+
+  @include breakpoint(tablet) {
+    --sb-width: #{$sidebar-collapsed-tablet};
+  }
 
   &--open {
     --sb-width: #{$sidebar-expanded};
