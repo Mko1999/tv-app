@@ -1,5 +1,6 @@
 $sidebar-collapsed: 150px;
 $sidebar-expanded: 350px;
+$sidebar-expanded-tablet: 300px;
 
 .sidebar {
   position: relative;
@@ -8,6 +9,10 @@ $sidebar-expanded: 350px;
 
   &--open {
     --sb-width: #{$sidebar-expanded};
+
+    @include breakpoint(tablet) {
+      --sb-width: #{$sidebar-expanded-tablet};
+    }
   }
 
   &__backdrop {

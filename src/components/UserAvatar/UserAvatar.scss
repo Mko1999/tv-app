@@ -11,5 +11,9 @@
     color: $color_white;
     font-size: 32px;
     letter-spacing: -0.32px;
+
+    @include breakpoint(tablet) {
+      font-size: 24px;
+    }
   }
 }

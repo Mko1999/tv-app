@@ -46,6 +46,11 @@
     line-height: 24px;
     color: $color_gray;
     letter-spacing: 4.8px;
+
+    @include breakpoint(tablet) {
+      font-size: 20px;
+      line-height: 20px;
+    }
   }
 
   &__category {
@@ -55,6 +60,14 @@
   &__title-img {
     width: auto;
     height: auto;
+
+    @include breakpoint(desktop) {
+      width: 300px;
+    }
+
+    @include breakpoint(tablet) {
+      width: 200px;
+    }
   }
 
   &__facts {
@@ -65,6 +78,16 @@
     color: $color_white;
     @include text-wrap;
     letter-spacing: 0;
+
+    @include breakpoint(desktop) {
+      font-size: 24px;
+      line-height: 24px;
+    }
+
+    @include breakpoint(tablet) {
+      font-size: 20px;
+      line-height: 20px;
+    }
   }
 
   &__desc {
@@ -72,12 +95,31 @@
     line-height: 32px;
     color: $color_white;
     @include text-ellipsis-multiline(4);
+
+    @include breakpoint(desktop) {
+      font-size: 28px;
+      line-height: 28px;
+    }
+
+    @include breakpoint(tablet) {
+      font-size: 24px;
+      line-height: 24px;
+    }
+
+    @include breakpoint(tablet) {
+      font-size: 20px;
+      line-height: 20px;
+    }
   }
 
   &__actions {
     display: flex;
     gap: 12px;
     margin-top: 10px;
+
+    @include breakpoint(tablet) {
+      flex-direction: column;
+    }
 
     &__item {
       min-height: 72px;
@@ -86,6 +128,21 @@
       font-size: 32px;
       line-height: 32px;
       padding: 18px 48px;
+
+      @include breakpoint(desktop) {
+        font-size: 28px;
+        line-height: 28px;
+      }
+
+      @include breakpoint(tablet) {
+        font-size: 24px;
+        line-height: 24px;
+      }
+
+      @include breakpoint(tablet) {
+        font-size: 20px;
+        line-height: 20px;
+      }
     }
 
     &__play {

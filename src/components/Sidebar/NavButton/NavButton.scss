@@ -2,11 +2,7 @@
   width: 82px;
   height: 82px;
   @include flex_center;
-
   gap: 50px;
-  font-size: 36px;
-  line-height: 36px;
-  color: $color_white;
   border-radius: 12px;
   letter-spacing: -1px;
 
@@ -14,8 +10,9 @@
     width: -webkit-fill-available;
     height: unset;
     min-height: 72px;
-    padding: 15px 17px 15px 24px;
     justify-content: flex-start;
+    padding-block: 15px;
+    padding-inline: 24px 17px;
 
     &--active,
     &.is-active {
@@ -37,5 +34,21 @@
   &__text {
     color: $color_white;
     font-size: 36px;
+    line-height: 36px;
+
+    @include breakpoint(desktop) {
+      font-size: 32px;
+      line-height: 32px;
+    }
+
+    @include breakpoint(tablet) {
+      font-size: 28px;
+      font-size: 24px;
+    }
+
+    @include breakpoint(mobile) {
+      font-size: 24px;
+      line-height: 24px;
+    }
   }
 }
