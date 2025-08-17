@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { VideoItem } from '../../../utils/mockData'
 import mockVideosData from '../../../utils/mockData'
-import { prepareTrending, setLastClickedId } from '../../../utils/trendingUtilts'
+import { buildTrendingList, setLastClickedId } from '../../../utils/trendingUtilts'
 import FeaturedVideo from '../FeaturedVideo/FeaturedVideo'
 import TrendingNowSection from '../TrendingNowSection/TrendingNowSection'
 import classNamesConstructor from '../../../utils/classNamesUtils'
@@ -14,13 +14,13 @@ const Home: React.FC = () => {
   const [featured, setFeatured] = useState<VideoItem>(mockVideosData.Featured)
   const [showVideo, setShowVideo] = useState(false)
   const [trending, setTrending] = useState<VideoItem[]>(() =>
-    prepareTrending(mockVideosData.TendingNow),
+    buildTrendingList(mockVideosData.TendingNow),
   )
 
   const handlePick = (item: VideoItem) => {
     setFeatured(item)
-    setShowVideo(false) // reset to image first
-    setLastClickedId(item.Id) // remember
+    setShowVideo(false)
+    setLastClickedId(item.Id)
     // after 2s swap to video
     window.setTimeout(() => setShowVideo(true), 2000)
   }
@@ -30,8 +30,8 @@ const Home: React.FC = () => {
       <FeaturedVideo
         item={featured}
         showVideo={showVideo}
-        onPlay={() => setShowVideo(true)}
-        onMoreInfo={() => {}}
+        onPlay={() => console.log('Play handler')}
+        onMoreInfo={() => console.log('More info handler')}
       />
 
       <TrendingNowSection items={trending} onPick={handlePick} />

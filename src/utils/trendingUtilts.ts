@@ -6,7 +6,7 @@ export const getLastClickedId = () => sessionStorage.getItem(LAST_CLICKED_KEY)
 export const setLastClickedId = (id: string) => sessionStorage.setItem(LAST_CLICKED_KEY, id)
 
 /** max 50, sort by Date desc; if lastClicked present, put it at the front */
-export const prepareTrending = (items: VideoItem[]): VideoItem[] => {
+export const buildTrendingList = (items: VideoItem[]): VideoItem[] => {
   const copy = [...items]
   copy.sort((a, b) => new Date(b.Date).getTime() - new Date(a.Date).getTime())
   const limited = copy.slice(0, 50)
@@ -18,11 +18,4 @@ export const prepareTrending = (items: VideoItem[]): VideoItem[] => {
   if (idx <= 0) return limited
   const [picked] = limited.splice(idx, 1)
   return [picked, ...limited]
-}
-
-export const formatDuration = (totalSecondsStr: string) => {
-  const s = Number(totalSecondsStr) || 0
-  const h = Math.floor(s / 3600)
-  const m = Math.floor((s % 3600) / 60)
-  return h ? `${h}h ${m}m` : `${m}m`
 }

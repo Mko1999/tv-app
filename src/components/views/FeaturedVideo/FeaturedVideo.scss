@@ -1,7 +1,7 @@
 .featured-video {
   position: relative;
   overflow: hidden;
-  height: calc(100vh - 314px); // trending now section height
+  height: calc(100vh - 320px); // trending now section height
 
   &__bg {
     position: absolute;
@@ -35,10 +35,23 @@
     @include flex_column;
     position: relative;
     z-index: 3;
-    padding: 48px 40px;
     max-width: 802px;
     display: grid;
     gap: 12px;
+    padding-top: 180px;
+    padding-right: 24px;
+
+    @include breakpoint(desktop) {
+      padding-top: 140px;
+    }
+
+    @include breakpoint(tablet) {
+      padding-top: 100px;
+    }
+
+    @include breakpoint(mobile) {
+      padding-top: 60px;
+    }
   }
 
   &__meta-top {
@@ -71,12 +84,12 @@
   }
 
   &__facts {
+    @include text-ellipsis;
     display: flex;
     gap: 12px;
     font-size: 30px;
     line-height: 30px;
     color: $color_white;
-    @include text-wrap;
     letter-spacing: 0;
 
     @include breakpoint(desktop) {

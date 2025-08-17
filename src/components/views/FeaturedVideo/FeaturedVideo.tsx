@@ -7,9 +7,10 @@ import classNamesConstructor from '../../../utils/classNamesUtils'
 import './FeaturedVideo.scss'
 import { CustomImage } from '../../shared'
 import { publicImage } from '../../../utils/imageUtils'
-import { formatDuration } from '../../../utils/trendingUtilts'
 import CustomButton from '../../shared/CustomButton/CustomButton'
 import { PlayIcon } from '../../../assets/icons'
+import { formatDuration } from '../../../utils/timeUtilts'
+import { MOCK_VIDEO_URL } from '../../../utils/mockVideoUrl'
 
 type FeaturedProps = {
   item: VideoItem
@@ -21,31 +22,31 @@ type FeaturedProps = {
 const { baseClassname } = classNamesConstructor('featured-video')
 
 const FeaturedVideo: React.FC<FeaturedProps> = ({ item, showVideo, onPlay, onMoreInfo }) => {
+  if (showVideo && item.VideoUrl) {
+    return (
+      <section className={baseClassname()}>
+        <video
+          className={cx(baseClassname('__bg-video'), baseClassname('__bg-layer'))}
+          src={MOCK_VIDEO_URL}
+          autoPlay
+          muted
+          loop
+          playsInline
+          controls={false}
+          preload='auto'
+        />
+      </section>
+    )
+  }
+
   return (
     <section className={baseClassname()}>
       <div className={baseClassname('__bg')}>
-        {/* Image layer */}
         <CustomImage
           src={publicImage(item?.CoverImage)}
           alt={item?.Title}
           className={cx(baseClassname('__bg-img'), baseClassname('__bg-layer'))}
         />
-
-        {/* Video layer (on top), hidden until showVideo */}
-        {showVideo && item?.VideoUrl && (
-          <video
-            className={cx(baseClassname('__bg-video'), baseClassname('__bg-layer'))}
-            autoPlay
-            muted
-            loop
-            playsInline
-            // src={item?.VideoUrl}
-            // src='https://www.bigbuckbunny.org/'
-          >
-            <source src='mov_bbb.mp4' type='video/mp4' />
-            <source src='mov_bbb.ogg' type='video/ogg' />
-          </video>
-        )}
 
         <div className={baseClassname('__overlay')} />
       </div>
@@ -69,9 +70,9 @@ const FeaturedVideo: React.FC<FeaturedProps> = ({ item, showVideo, onPlay, onMor
         </div>
 
         <div className={baseClassname('__facts')}>
-          <span>{item?.ReleaseYear}</span>
-          <span>{item?.MpaRating}</span>
-          <span>{formatDuration(item.Duration)}</span>
+          <span className={baseClassname('__facts__item')}>{item?.ReleaseYear}</span>
+          <span className={baseClassname('__facts__item')}>{item?.MpaRating}</span>
+          <span className={baseClassname('__facts__item')}>{formatDuration(item.Duration)}</span>
         </div>
 
         <p className={baseClassname('__desc')}>{item?.Description}</p>
